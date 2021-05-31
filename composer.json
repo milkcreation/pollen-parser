@@ -41,12 +41,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Pollen\\Parser\\": ""
+      "Pollen\\Parser\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Pollen\\Parser\\Test\\": "src"
+      "Pollen\\Parser\\Test\\": "tests"
     }
   },
   "suggest": {
