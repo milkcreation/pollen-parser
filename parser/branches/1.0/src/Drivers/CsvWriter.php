@@ -11,7 +11,8 @@ use League\Csv\ColumnConsistency;
 use League\Csv\Exception as LeagueCsvException;
 use League\Csv\Writer as LeagueCsvWriter;
 use Pollen\Parser\Exceptions\WriterException;
-use Symfony\Component\HttpFoundation\StreamedResponse;
+use Pollen\Http\StreamedResponse;
+use Pollen\Http\StreamedResponseInterface;
 use Throwable;
 
 /**
@@ -214,7 +215,7 @@ class CsvWriter implements CsvWriterInterface
     /**
      * @inheritDoc
      */
-    public function download(string $name = 'file.csv', array $headers = []): StreamedResponse
+    public function download(string $name = 'file.csv', array $headers = []): StreamedResponseInterface
     {
         return $this->response($name, $headers, 'attachment');
     }
@@ -335,7 +336,7 @@ class CsvWriter implements CsvWriterInterface
         string $name = 'file.csv',
         array $headers = [],
         string $disposition = 'inline'
-    ): StreamedResponse {
+    ): StreamedResponseInterface {
         $response = new StreamedResponse(
             function () {
                 $flush_threshold = $this->getWriter()->getFlushThreshold() ?: 1000;
@@ -364,6 +365,6 @@ class CsvWriter implements CsvWriterInterface
             )
         );
 
-        return $response->send();
+        return $response;
     }
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Pollen\Parser\Drivers;
 
 use League\Csv\Writer;
-use Symfony\Component\HttpFoundation\StreamedResponse;
+use Pollen\Http\StreamedResponseInterface;
 use Traversable;
 
 interface CsvWriterInterface
@@ -52,9 +52,9 @@ interface CsvWriterInterface
      * @param string|null $name Nom de qualification du fichier.
      * @param array $headers Liste des entêtes complémentaires.
      *
-     * @return StreamedResponse
+     * @return StreamedResponseInterface
      */
-    public function download(string $name = 'file.csv', array $headers = []): StreamedResponse;
+    public function download(string $name = 'file.csv', array $headers = []): StreamedResponseInterface;
 
     /**
      * Récupération de l'instance du controleur de traitement.
@@ -92,11 +92,11 @@ interface CsvWriterInterface
      * @param array $headers Liste des entêtes complémentaires.
      * @param string $disposition type de disposition. inline|attachment.
      *
-     * @return StreamedResponse
+     * @return StreamedResponseInterface
      */
     public function response(
         string $name = 'file.csv',
         array $headers = [],
         string $disposition = 'inline'
-    ): StreamedResponse;
+    ): StreamedResponseInterface;
 }
